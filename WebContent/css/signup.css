@@ -1,0 +1,11 @@
+.form-signin-heading{
+	text-align:center;
+}
+body{
+	background-image:url("http://localhost:9005/HelpMyInterview/img/loginback.jpg");
+	margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+}

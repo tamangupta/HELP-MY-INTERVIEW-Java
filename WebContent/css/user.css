@@ -1,0 +1,10 @@
+.jumbotron{
+	background-image:url("http://localhost:9005/HelpMyInterview/img/jumbo.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+
+}
+#hello{
+	color:white;
+}
