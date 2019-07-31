@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.iimt.dao.GroupDAO;
 import com.iimt.dao.GroupDAOImpl;
@@ -42,7 +43,10 @@ public class PostGroupDisAdminController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher =request.getRequestDispatcher("postgroupdisbyadmin.jsp");
+		HttpSession session = request.getSession(false);
+		RequestDispatcher dispatcher = null;
+		if (session != null) {
+		dispatcher =request.getRequestDispatcher("postgroupdisbyadmin.jsp");
 		String question= request.getParameter("question");
 		GroupDis gd = new GroupDis();
 		gd.setQuestion(question);
@@ -55,6 +59,10 @@ public class PostGroupDisAdminController extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "Question Post Failed");
 			dispatcher = request.getRequestDispatcher("postgroupdisbyadmin.jsp");
+		}
+		}else {
+			request.setAttribute("msg", "Please Login To Access Into Website");
+			dispatcher = request.getRequestDispatcher("login.jsp");
 		}
 		dispatcher.forward(request, response);
 	}

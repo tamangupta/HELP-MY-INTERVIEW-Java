@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.iimt.dao.UserDAO;
 import com.iimt.dao.UserDAOImpl;
@@ -41,7 +42,9 @@ public class DeleteUserAdminController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//read data from http
-		RequestDispatcher dispatcher =null;
+		HttpSession session = request.getSession(false);
+		RequestDispatcher dispatcher = null;
+		if (session != null) {
 		String emailAddress = request.getParameter("emailAddress");
 		UserDAO dao=new UserDAOImpl();
 		 String res = dao.delete(emailAddress);
@@ -52,6 +55,10 @@ public class DeleteUserAdminController extends HttpServlet {
 				request.setAttribute("msg", "User Deletion Failed");
 			 dispatcher = request.getRequestDispatcher("deleteuseradmin.jsp");
 		 }
+		}else {
+			request.setAttribute("msg", "Please Login To Access Into Website");
+			dispatcher = request.getRequestDispatcher("login.jsp");
+		}
 		 dispatcher.forward(request, response);
 	}
 

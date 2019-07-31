@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,7 @@
 </head>
 <body>
 		<nav class="navbar navbar-expand-lg navbar-light bg-danger ">
-		<a class="navbar-brand " href="index.jsp" style="color:white">HelpMyInterView</a>
+		<a class="navbar-brand " href="index.jsp" style="color:white">HelpMyInterView.Com</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"

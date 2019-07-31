@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.iimt.dao.UserDAO;
 import com.iimt.dao.UserDAOImpl;
@@ -40,7 +41,10 @@ public class RegisterUserAdmin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Read data from HTTP
+		HttpSession session = request.getSession(false);
+		RequestDispatcher rd = null;
+		if (session != null) {
+				//Read data from HTTP
 				String firstName = request.getParameter("firstName");
 				String lastName = request.getParameter("lastName");
 				String emailAddress = request.getParameter("emailAddress");
@@ -58,7 +62,6 @@ public class RegisterUserAdmin extends HttpServlet {
 				user.setUserType(userType);
 				UserDAO dao = new UserDAOImpl();
 				String res = dao.insert(user);
-				RequestDispatcher rd = null;
 				if(res.equals("SUCCESS")) {
 					request.setAttribute("msg", "Registration Success");
 					rd = request.getRequestDispatcher("admindashboard.jsp");
@@ -66,6 +69,10 @@ public class RegisterUserAdmin extends HttpServlet {
 					request.setAttribute("msg", "Registration Failed");
 					rd = request.getRequestDispatcher("admindashboard.jsp");
 				}
+		}else {
+			request.setAttribute("msg", "Please Login To Access Into Website");
+			rd = request.getRequestDispatcher("login.jsp");
+		}
 				rd.forward(request, response);
 	}
 

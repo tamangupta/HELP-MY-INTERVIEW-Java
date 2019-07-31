@@ -16,7 +16,7 @@ public interface UserDAO {
 	
 	public User findByEmail(String email);
 	
-	public boolean isValidUser(User user);
+	public String isValidUser(User user);
 	
 	public String getUserType(String emailAddress);
 

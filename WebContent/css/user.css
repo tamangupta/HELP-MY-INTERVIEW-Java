@@ -3,8 +3,25 @@
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
-
 }
-#hello{
-	color:white;
+#ca{
+	background-image:url("http://localhost:9005/HelpMyInterview/img/back.jpg");
+}
+.card-columns{
+	padding-top:2rem;
+	padding-left:1rem;
+	padding-bottom:1.5rem;
+	padding-right:1rem;
+}
+#feature{
+	text-align:center;
+	padding-top:1rem;
+}
+body{
+	background-image:url("http://localhost:9005/HelpMyInterview/img/back3.jpg");
+	margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
 }

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.iimt.dao.UserDAO;
 import com.iimt.dao.UserDAOImpl;
@@ -33,14 +34,22 @@ public class UserDisplayAdminController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("displayallusertoadmin.jsp");
+		HttpSession session = request.getSession(false);
+		RequestDispatcher dispatcher = null;
+		if (session != null) {
+		dispatcher = request.getRequestDispatcher("displayallusertoadmin.jsp");
 
 		 //Call the DAO
 		 UserDAO dao=new UserDAOImpl();
 
 		 List<User> list=dao.getAllUser();
 		 request.setAttribute("list", list);
-		 request.getRequestDispatcher("displayallusertoadmin.jsp");
+		 dispatcher = request.getRequestDispatcher("displayallusertoadmin.jsp");
+		}
+		else {
+			request.setAttribute("msg", "Please Login To Access Into Website");
+			 dispatcher = request.getRequestDispatcher("login.jsp");
+		}
 		 dispatcher.forward(request, response);
 	}
 

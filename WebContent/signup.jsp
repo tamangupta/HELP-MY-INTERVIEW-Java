@@ -14,7 +14,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-danger ">
-		<a class="navbar-brand " href="index.jsp" style="color:white">HelpMyInterView</a>
+		<a class="navbar-brand " href="index.jsp" style="color:white">HelpMyInterView.Com</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -68,11 +68,10 @@
 
     <input type="password" id="inputPassword" class="form-control"  placeholder="Password" value="" name="password" required>
     <br>
-    <span>User Type: </span>
 
-    <label for="inputPassword" class="sr-only">User Type</label>
+  
 
-    <input type="password" id="UserType" class="form-control" placeholder="User Type"  value="" name="userType"required></input>
+    <input type="hidden" id="UserType" class="form-control" placeholder="User Type"  value="" name="userType"required></input>
     <br>
    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit" value="submit" >Sign Up</button>

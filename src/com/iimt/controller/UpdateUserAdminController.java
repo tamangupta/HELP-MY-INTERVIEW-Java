@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.iimt.dao.UserDAO;
 import com.iimt.dao.UserDAOImpl;
@@ -40,15 +41,26 @@ public class UpdateUserAdminController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher =request.getRequestDispatcher("updateuseradmin.jsp");
+		HttpSession session = request.getSession(false);
+		RequestDispatcher dispatcher= null;
+		if (session != null) {
+		dispatcher =request.getRequestDispatcher("updateuseradmin.jsp");
 		String emailAddress= request.getParameter("emailAddress");
 		System.out.println(emailAddress);
 		//Call the DAO
 		 UserDAO dao=new UserDAOImpl();
 		 User u = dao.findByEmail(emailAddress);
-		 System.out.println(u.getFirstName());
+		 if(u != null) {
 		 request.setAttribute("user", u);
-		 request.getRequestDispatcher("updateuseradmin.jsp");
+		 dispatcher= request.getRequestDispatcher("updateuseradmin.jsp");
+		 }else {
+			 request.setAttribute("msg", "enter valid email id*NoDataPresentWithThisId*");
+			dispatcher =  request.getRequestDispatcher("updateuseradmin.jsp");
+		 }
+		}else {
+			request.setAttribute("msg", "Please Login To Access Into Website");
+			dispatcher = request.getRequestDispatcher("login.jsp");
+		}
 		 dispatcher.forward(request, response);
 	}
 

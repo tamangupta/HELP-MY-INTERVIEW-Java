@@ -41,14 +41,12 @@ public class SignUpController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Read data from HTTP
-		System.out.println("SignUpController");
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String emailAddress = request.getParameter("emailAddress");
 		String mobileNumber = request.getParameter("mobileNumber");
 		String password = request.getParameter("password");
-		String userType = request.getParameter("userType");
-		System.out.println("user Type " + userType);
+		String userType = "user";
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);

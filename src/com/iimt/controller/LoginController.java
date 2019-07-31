@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.iimt.dao.UserDAO;
 import com.iimt.dao.UserDAOImpl;
@@ -54,20 +55,32 @@ public class LoginController extends HttpServlet {
 		user.setPassword(password);
 		// create the DAO object
 		UserDAO dao = new UserDAOImpl();
-		boolean valid = dao.isValidUser(user);
+		String fullName = dao.isValidUser(user);
 		String st = dao.getUserType(emailAddress);
 		RequestDispatcher rd = null;
-		if (valid) {
-			if (st.equalsIgnoreCase("admin")) {
-				request.setAttribute("msg", "Login Success");
-				rd = request.getRequestDispatcher("admindashboard.jsp");
-			} else if (st.equals("user") || st.equals("User") || st.equals("USER")) {
-				request.setAttribute("msg", "Login Success");
-				rd = request.getRequestDispatcher("userdashboard.jsp");
+		HttpSession session = null;
+		if (fullName!=null) {
+			session = request.getSession();
+			if (session != null) {
+
+				session.setAttribute("username", fullName);
+				session.setMaxInactiveInterval(180);
+
+				if (st.equalsIgnoreCase("admin")) {
+					request.setAttribute("msg", "Login Success");
+					rd = request.getRequestDispatcher("admindashboard.jsp");
+				} else if (st.equals("user") || st.equals("User") || st.equals("USER")) {
+					request.setAttribute("msg", "Login Success");
+					rd = request.getRequestDispatcher("userdashboard.jsp");
+				} else {
+					request.setAttribute("msg", "Invalid User Type");
+					rd = request.getRequestDispatcher("login.jsp");
+				}
 			} else {
-				request.setAttribute("msg", "Invalid User Type");
+				request.setAttribute("msg", "Session Time Out Again Login ");
 				rd = request.getRequestDispatcher("login.jsp");
 			}
+
 		} else {
 			request.setAttribute("msg", "Enter valid  username or password");
 			rd = request.getRequestDispatcher("login.jsp");

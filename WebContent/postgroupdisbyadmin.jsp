@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%
+String ses = (String)session.getAttribute("username");
+if(ses!=null){
+%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -14,7 +18,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-danger ">
-		<a class="navbar-brand "  href="index.jsp" style="color:white">HelpMyInterView</a>
+		<a class="navbar-brand "  href="index.jsp" style="color:white">HelpMyInterView.Com</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -23,7 +27,11 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto" id="navId">
-				<li class="nav-item active bg-danger"><a class="nav-link" href="admindashboard.jsp" style="color:white">Admin Dashboard<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active bg-danger"><a class="nav-link" href="admindashboard.jsp" style="color:white">Admin Dashboard<span class="sr-only">(current)</span></a></li><li class="nav-item active bg-danger"><a class="nav-link" href="admindashboard.jsp" style="color:white">Home<span class="sr-only">(current)</span></a></li>
+			<li class="nav-item active bg-danger"><a class="nav-link" href="GetAllQuesGDController" style="color:white">GetAllQues<span class="sr-only">(current)</span></a></li>
+			<li class="nav-item active bg-danger"><a class="nav-link" href="deletequestiongdadmin.jsp" style="color:white">DeleteQues<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active bg-danger"><a class="nav-link" href="admindashboard.jsp" style="color:white">Dashboard<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active bg-danger"><a class="nav-link" href="LogoutController" style="color:white">Logout<span class="sr-only">(current)</span></a></li>
 			</ul>
 		</div>
 	</nav>
@@ -46,3 +54,10 @@
 </div>
 </body>
 </html>
+<% } else{
+	RequestDispatcher rd=null;
+	rd = request.getRequestDispatcher("login.jsp");
+	rd.forward(request, response);
+	
+}
+%>

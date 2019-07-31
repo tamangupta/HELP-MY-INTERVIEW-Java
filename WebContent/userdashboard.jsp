@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
+<%
+String ses = (String)session.getAttribute("username");
+if(ses!=null){
+%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -13,34 +17,90 @@
 <title>Help My Interview User Dashboard</title>
 </head>
 <body>
-<div class="container-fluid">
-<div class="jumbotron">
-  <h1 class="display-4" id="hello">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+		<a class="navbar-brand "  href="index.jsp" style="color:white;padding-right:4rem">HelpMyInterView.Com</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav float-md-right" id="navId">
+				<li class="nav-item active bg-danger"><a class="nav-link" href="userdashboard.jsp" style="color:white">Home<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active bg-danger"><a class="nav-link" href="beforeinterview.jsp" style="color:white">PreInterview<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active bg-danger"><a class="nav-link" href="QuestionDisplay" style="color:white">Group Dis<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active bg-danger"><a class="nav-link" href="feedback.jsp" style="color:white">Share Your Exp<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active bg-danger"><a class="nav-link" href="LogoutController" style="color:white">Logout<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active" style="float:left"><a class="nav-link"  style="color:white;float:right">Welcome, ${username}<span class="sr-only">(current)</span></a></li>
+			</ul>
+		</div>
+</nav>
+<div class="container-fluid" style="padding-top:1rem;">
+<div class="jumbotron text-white" >
+  <h1 class="display-4" >Aspiration Meets Hope</h1>
+  <p class="lead">The better prepare you are,the most successful your interview would be.</p>
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  <p>Reach Your Destination With Organised Plan</p>
+  <a class="btn btn-primary btn-lg" href="" role="button">Get Started</a>
 </div>
-</div>
-<div class="container-fluid">
-<div class="row">
-<div class="card mb-3">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title" >Card title</h5>
-    <p class="card-text" >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+<div class="card" style="background-color:lightgray">
+<h1 id="feature">Prepare Your Self For Tomorrow</h1>
+<div class="card-columns" id="card-c">
+  <div class="card" id="ca" >
+    <div class="card-body text-center ">
+      <p class="card-text text-white"><a href="beforeinterview.jsp" class="text-white"><h3>Tips For Before Interview Preparation(Fresher&Exp)</h3></a></p>
+    </div>
   </div>
-</div>
-<div class="card bg-info text-white">
-  <img src="http://localhost:9005/HelpMyInterview/img/beforeint.jpg" class="card-img" alt="image">
-  <div class="card-img-overlay">
-    <a class="card-title" href="index.jsp">Card title<a>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">Last updated 3 mins ago</p>
+  <div class="card" id="ca" >
+    <div class="card-body text-center ">
+      <p class="card-text text-white"><a href="postinterview.jsp" class="text-white"><h3>Tips For After Interview Preparation(Fresher&Exp)</h3></a></p>
+    </div>
   </div>
-</div>
+  <div class="card" id="ca" >
+    <div class="card-body text-center ">
+      <p class="card-text text-white"><a href="QuestionDisplay" class="text-white"><h3>Click To Enter In Group Discussion</h3></a></p>
+    </div>
+  </div>
+  <div class="card" id="ca" >
+    <div class="card-body text-center ">
+      <p class="card-text text-white"><a href="DisplayAllFeedback" class="text-white"><h3>Read Experience(Professionals)</h3></a></p>
+    </div>
+  </div>
+  <div class="card" id="ca" >
+    <div class="card-body text-center ">
+      <p class="card-text text-white"><a href="resumetemplateuser.jsp" class="text-white"><h3>Resume Template (Fresher & Exp)</h3></a></p>
+    </div>
+  </div>
+  <div class="card" id="ca" >
+    <div class="card-body text-center ">
+      <p class="card-text text-white"><a href="feedback.jsp" class="text-white"><h3>Share Your Interview Experience</h3></a></p>
+    </div>
+  </div>
+  <div class="card" id="ca" >
+    <div class="card-body text-center ">
+      <p class="card-text text-white"><a href="softskills.jsp" class="text-white"><h3>Tips To Improve Communication Skills</h3></a></p>
+    </div>
+  </div>
+  <div class="card" id="ca" >
+    <div class="card-body text-center ">
+      <p class="card-text text-white"><a href="" class="text-white"><h3>Some More Features Coming Soon...</h3></a></p>
+    </div>
+  </div>
+  <div class="card" id="ca" >
+    <div class="card-body text-center ">
+      <p class="card-text text-white"><a href="" class="text-white"><h3>Some More Features Coming Soon...</h3></a></p>
+    </div>
+  </div>
+  </div>
 </div>
 </div>
 </body>
 </html>
+<% } else{
+	RequestDispatcher rd=null;
+	rd = request.getRequestDispatcher("login.jsp");
+	rd.forward(request, response);
+	
+}
+%>

@@ -138,8 +138,8 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean isValidUser(User user) {
-		boolean flag = false;
+	public String isValidUser(User user) {
+		String fullname="";
 		String sql = "SELECT * FROM USERDETAILS WHERE EMAILADDRESS=? && PASSWORD=? ";
 		PreparedStatement stm = null;
 		ResultSet rs = null;
@@ -150,12 +150,15 @@ public class UserDAOImpl implements UserDAO {
 			stm.setString(2, user.getPassword());
 			rs = stm.executeQuery();
 			if(rs.next()) {
-				flag = true;
+				String firstName = rs.getString("FIRSTNAME");
+				String lastName = rs.getString("LASTNAME");
+				fullname=firstName+" "+lastName;
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return flag;
+		return fullname;
 	}
 
 	@Override
